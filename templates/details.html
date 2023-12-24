@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
-{% block title %}Blogly Moderation Interface: {{user.first_name}} {{user.last_name}}{% endblock %}
-{% block heading %}{{user.first_name}} {{user.last_name}}{% endblock %}
+{% block title %}Blogly Moderation Interface: {{user.get_full_name()}}{% endblock %}
+{% block heading %}{{user.get_full_name()}}{% endblock %}
 
 {% block content %}
     <img src="{{user.image_url}}"/>
