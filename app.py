@@ -46,3 +46,15 @@ def show_user_details(user_id):
 def show_update_form(user_id):
     user = User.query.get_or_404(user_id)
     return render_template("update-user.html", user=user)
+
+@app.route("/update/<user_id>", methods=["POST"])
+def update_user(user_id):
+    user = User.query.get_or_404(user_id)
+    user.first_name = request.form["first_name"]
+    user.last_name = request.form["last_name"]
+    user.image_url = request.form["icon_url"] if request.form["icon_url"] else None
+    
+    db.session.add(user)
+    db.session.commit()
+    
+    return redirect(f"/users/{user.id}")
