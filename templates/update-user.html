@@ -3,9 +3,7 @@
 {% block title %}
     Blogly Moderation Interface: Update Profile {{user.first_name}} {{user.last_name}}
 {% endblock %}
-{% block heading %}
-    Update Profile for {{user.first_name}} {{user.last_name}}
-{% endblock %}
+{% block heading %}Update Profile for {{user.first_name}} {{user.last_name}}{% endblock %}
 
 {% block content %}
 <form action="/users/{{user.id}}/edit" method="POST">
