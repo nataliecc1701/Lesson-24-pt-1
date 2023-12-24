@@ -21,11 +21,11 @@ def show_userlist():
     
     return render_template("list.html", users = users)
 
-@app.route("/add-user")
+@app.route("/users/new")
 def show_add_form():
     return render_template("add-user.html")
 
-@app.route("/add-user", methods=["POST"])
+@app.route("/users/new", methods=["POST"])
 def add_user():
     first_name = request.form["first_name"]
     last_name = request.form["last_name"]
@@ -42,12 +42,12 @@ def show_user_details(user_id):
     user = User.query.get_or_404(user_id)
     return render_template("details.html", user = user)
 
-@app.route("/update/<user_id>")
+@app.route("/users/<user_id>/edit")
 def show_update_form(user_id):
     user = User.query.get_or_404(user_id)
     return render_template("update-user.html", user=user)
 
-@app.route("/update/<user_id>", methods=["POST"])
+@app.route("/users/<user_id>/edit", methods=["POST"])
 def update_user(user_id):
     user = User.query.get_or_404(user_id)
     user.first_name = request.form["first_name"]
