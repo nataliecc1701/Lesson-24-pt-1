@@ -41,3 +41,8 @@ def add_user():
 def show_user_details(user_id):
     user = User.query.get_or_404(user_id)
     return render_template("details.html", user = user)
+
+@app.route("/update/<user_id>")
+def show_update_form(user_id):
+    user = User.query.get_or_404(user_id)
+    return render_template("update-user.html", user=user)
