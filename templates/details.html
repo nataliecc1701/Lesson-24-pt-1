@@ -11,5 +11,8 @@
         <li>ID: {{user.id}}</li>
     </ul>
     <p><a href="/users/{{user.id}}/edit">Edit Profile</a></p>
+    <form action="/users/{{user.id}}/delete" method="POST">
+        <button>Delete User</button>
+    </form>
     <p><a href="/">Go Back</a></p>
 {% endblock %}
