@@ -36,3 +36,8 @@ def add_user():
     db.session.commit()
     
     return redirect("/")
+
+@app.route("/users/<user_id>")
+def show_user_details(user_id):
+    user = User.query.get_or_404(user_id)
+    return render_template("details.html", user = user)
