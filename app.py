@@ -93,7 +93,7 @@ def show_edit_form(post_id):
 
 @app.route("/posts/<post_id>/edit", methods=["POST"])
 def edit_post(post_id):
-    post = Post.query.get_or_404(int(post_id))
+    post = Post.query.get_or_404(post_id)
     post.title = request.form["title"]
     post.content = request.form["content"]
     
@@ -101,3 +101,11 @@ def edit_post(post_id):
     db.session.commit()
     
     return redirect(f"/posts/{post.id}")
+
+@app.route("/posts/<post_id>/delete", methods=["POST"])
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    user_id = post.creator_id
+    Post.query.filter_by(id=post_id).delete()
+    db.session.commit()
+    return redirect(f"/users/{user_id}")
