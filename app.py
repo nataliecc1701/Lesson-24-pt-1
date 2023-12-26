@@ -68,4 +68,4 @@ def update_user(user_id):
 def show_post_form(user_id):
     user = User.query.get_or_404(user_id)
     
-    return render_template("add-post.html")
+    return render_template("add-post.html", user=user)

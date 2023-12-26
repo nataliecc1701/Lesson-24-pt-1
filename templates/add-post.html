@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Blogly: Add Post as {{user.get_full_name()}}{% endblock %}
+{% block heading %}Add Post as {{user.get_full_name()}}{% endblock %}
+
+{% block content %}
+<form action="/users/{{user.id}}/posts/new" method="POST">
+    <input type="text" name="title" placeholder="title">
+    <input type="text" name="content" placeholder="content">
+    <button>Add post</button>
+</form>
+{% endblock %}
