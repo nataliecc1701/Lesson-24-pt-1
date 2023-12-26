@@ -6,6 +6,7 @@
 {% block content %}
     <container>
         <p>{{post.content}}</p>
-        <p>by {{post.creator.get_full_name()}} on {{post.created_at}}</p>
+        <p>by <a href="/users/{{post.creator.id}}">{{post.creator.get_full_name()}}</a> on {{post.created_at}}</p>
     </container>
+    <p><a href="/">back to userlist</a> <a>edit</a></p>
 {% endblock %}
