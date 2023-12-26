@@ -85,3 +85,8 @@ def add_post(user_id):
 def show_post(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template("post.html", post=post)
+
+@app.route("/posts/<post_id>/edit")
+def show_edit_form(post_id):
+    post = Post.query.get_or_404(int(post_id))
+    return render_template("edit-post.html", post=post)
