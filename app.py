@@ -63,3 +63,9 @@ def update_user(user_id):
     db.session.commit()
     
     return redirect(f"/users/{user.id}")
+
+@app.route("/users/<user_id>/posts/new")
+def show_post_form(user_id):
+    user = User.query.get_or_404(user_id)
+    
+    return render_template("add-post.html")
