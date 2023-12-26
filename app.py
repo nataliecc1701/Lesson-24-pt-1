@@ -90,3 +90,14 @@ def show_post(post_id):
 def show_edit_form(post_id):
     post = Post.query.get_or_404(int(post_id))
     return render_template("edit-post.html", post=post)
+
+@app.route("/posts/<post_id>/edit", methods=["POST"])
+def edit_post(post_id):
+    post = Post.query.get_or_404(int(post_id))
+    post.title = request.form["title"]
+    post.content = request.form["content"]
+    
+    db.session.add(post)
+    db.session.commit()
+    
+    return redirect(f"/posts/{post.id}")
