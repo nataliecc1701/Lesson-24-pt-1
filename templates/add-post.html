@@ -7,7 +7,12 @@
 <form action="/users/{{user.id}}/posts/new" method="POST">
     <input type="text" name="title" placeholder="title">
     <input type="text" name="content" placeholder="content">
-    <button>Add post</button>
+    <h2>Tags:</h2>
+    {% for tag in tags %}
+    <input type="checkbox" name="tag{{tag.id}}"/>
+    <label for="tag{{tag.id}}">{{tag.name}}</label>
+    {% endfor %}
+    <br/><br/><button>Add post</button>
 </form>
-<a href="/users/{{user.id}}">Cancel</a>
+<p><a href="/users/{{user.id}}">Cancel</a></p>
 {% endblock %}
