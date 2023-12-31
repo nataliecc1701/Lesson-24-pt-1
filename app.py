@@ -115,3 +115,8 @@ def show_all_tags():
     tags = Tag.query.order_by(Tag.name).all()
     
     return render_template("tags.html", tags=tags)
+
+@app.route("/tags/<tag_id>")
+def show_tag_posts(tag_id):
+    tag = Tag.query.get_or_404(tag_id)
+    return render_template("tag-posts.html", tag = tag)
