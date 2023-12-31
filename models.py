@@ -28,8 +28,8 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, server_default = func.now())
     creator_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     
-    creator = db.relationship("User", backref="posts", cascade="delete")
-    tags = db.relationship("Tag", secondary="posts_tags", backref="posts", cascade="delete-orphan")
+    creator = db.relationship("User", backref="posts")
+    tags = db.relationship("Tag", secondary="posts_tags", backref="posts")
     
 class Tag(db.Model):
     __tablename__ = "tags"
