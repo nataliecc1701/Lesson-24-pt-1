@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Blogly: Add Tag{% endblock %}
+{% block heading %}Add Tag{% endblock %}
+
+{% block content %}
+<form action="/tags/new" method="POST">
+    <input type="text" name="name" placeholder="tag">
+    <button>Add new user</button>
+</form>
+{% endblock %}

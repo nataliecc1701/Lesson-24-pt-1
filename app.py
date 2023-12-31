@@ -21,7 +21,7 @@ def show_userlist():
     return render_template("users.html", users = users)
 
 @app.route("/users/new")
-def show_add_form():
+def show_add_user_form():
     return render_template("add-user.html")
 
 @app.route("/users/new", methods=["POST"])
@@ -133,3 +133,7 @@ def show_all_tags():
 def show_tag_posts(tag_id):
     tag = Tag.query.get_or_404(tag_id)
     return render_template("tag-posts.html", tag = tag)
+
+@app.route("/tags/new")
+def show_add_tag_form():
+    return render_template("add-tag.html")
