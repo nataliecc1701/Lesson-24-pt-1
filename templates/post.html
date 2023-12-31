@@ -6,6 +6,12 @@
 {% block content %}
     <container>
         <p>{{post.content}}</p>
+        {% if post.tags %}<p>
+            Tagged with:
+            {% for tag in post.tags %}
+            <a href="/tags/{{tag.id}}">{{tag.name}}</a>
+            {% endfor %}
+        </p>{% endif %}
         <p>by <a href="/users/{{post.creator.id}}">{{post.creator.get_full_name()}}</a> on {{post.created_at}}</p>
     </container>
     <p>
