@@ -166,6 +166,6 @@ def edit_tag(post_id):
 
 @app.route("/tags/<tag_id>/delete", methods=["POST"])
 def delete_tag(tag_id):
-    Post.query.filter_by(id=tag_id).delete()
+    Tag.query.filter_by(id=tag_id).delete()
     db.session.commit()
     return redirect(f"/tags")

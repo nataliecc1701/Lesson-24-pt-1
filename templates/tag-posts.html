@@ -9,5 +9,8 @@
         <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
         {% endfor %}
     </ul>
-    <p><a href="/tags">All Tags</a></p>
+    <p><a href="/tags">All Tags</a> | <a href="/tags/{{tag.id}}/edit">Rename Tag</a></p>
+    <form action="/tags/{{tag.id}}/delete" method="POST">
+        <button>Delete Tag</button>
+    </form>
 {% endblock %}
