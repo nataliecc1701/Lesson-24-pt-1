@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Blogly: Rename Tag {{tag.name}}{% endblock %}
+{% block heading %}Rename Tag {{tag.name}}{% endblock %}
+
+{% block content %}
+<form action="/tags/new" method="POST">
+    <input type="text" name="name" placeholder="tag" value="{{tag.name}}">
+    <button>Update Tag</button>
+</form>
+{% endblock %}

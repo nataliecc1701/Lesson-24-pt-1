@@ -139,7 +139,7 @@ def show_add_tag_form():
     return render_template("add-tag.html")
 
 @app.route("/tags/new", methods=["POST"])
-def add_user():
+def add_tag():
     name = request.form["name"]
     
     new_tag = Tag(name = name)
@@ -147,3 +147,25 @@ def add_user():
     db.session.commit()
     
     return redirect("/tags")
+
+@app.route("/tags/<tag_id>/edit")
+def show_edit_tag_form(tag_id):
+    tag = Tag.query.get_or_404(int(tag_id))
+    
+    return render_template("edit-tag.html", tag=tag)
+
+@app.route("/posts/<post_id>/edit", methods=["POST"])
+def edit_tag(post_id):
+    tag = Tag.query.get_or_404(post_id)
+    tag.name = request.form["name"]
+    
+    db.session.add(tag)
+    db.session.commit()
+    
+    return redirect(f"/tags/{tag.id}")
+
+@app.route("/tags/<tag_id>/delete", methods=["POST"])
+def delete_tag(tag_id):
+    Post.query.filter_by(id=tag_id).delete()
+    db.session.commit()
+    return redirect(f"/tags")
