@@ -26,7 +26,7 @@ class Post(db.Model):
     title = db.Column(db.String(50), nullable=False)
     content = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, server_default = func.now())
-    creator_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    creator_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"))
     
     creator = db.relationship("User", backref="posts")
     tags = db.relationship("Tag", secondary="posts_tags", backref="posts")
@@ -40,5 +40,7 @@ class Tag(db.Model):
 class PostTag(db.Model):
     __tablename__ = "posts_tags"
     
-    post_id = db.Column(db.Integer, db.ForeignKey("posts.id"), primary_key=True)
-    tag_id = db.Column(db.Integer, db.ForeignKey("tags.id"), primary_key=True)
+    post_id = db.Column(db.Integer, db.ForeignKey("posts.id", ondelete="CASCADE"), primary_key=True)
+    tag_id = db.Column(db.Integer, db.ForeignKey("tags.id", ondelete="CASCADE"), primary_key=True)
+    
+    post = db.relationship("Post")
