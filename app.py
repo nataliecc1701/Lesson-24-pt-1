@@ -137,3 +137,13 @@ def show_tag_posts(tag_id):
 @app.route("/tags/new")
 def show_add_tag_form():
     return render_template("add-tag.html")
+
+@app.route("/tags/new", methods=["POST"])
+def add_user():
+    name = request.form["name"]
+    
+    new_tag = Tag(name = name)
+    db.session.add(new_tag)
+    db.session.commit()
+    
+    return redirect("/tags")
