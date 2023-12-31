@@ -39,7 +39,7 @@ def add_user():
 @app.route("/users/<user_id>")
 def show_user_details(user_id):
     user = User.query.get_or_404(user_id)
-    return render_template("details.html", user = user)
+    return render_template("user-details.html", user = user)
 
 @app.route("/users/<user_id>/delete", methods=["POST"])
 def delete_user(user_id):
