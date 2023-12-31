@@ -105,6 +105,11 @@ def edit_post(post_id):
     post.title = request.form["title"]
     post.content = request.form["content"]
     
+    post.tags = []
+    for key in request.form:
+        if key[0:3] == "tag" and request.form[key] == "on":
+            post.tags.append(Tag.query.get(key[3:]))
+    
     db.session.add(post)
     db.session.commit()
     
