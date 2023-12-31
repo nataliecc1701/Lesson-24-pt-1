@@ -1,7 +1,7 @@
 """Blogly application."""
 
 from flask import Flask, render_template, redirect, request
-from models import db, connect_db, User, Post
+from models import db, connect_db, User, Post, Tag, PostTag
 # from flask_debugtoolbar import DebugToolbarExtension
 
 app = Flask(__name__)
@@ -18,7 +18,7 @@ connect_db(app)
 def show_userlist():
     users = User.query.order_by(User.last_name).all()
     
-    return render_template("list.html", users = users)
+    return render_template("users.html", users = users)
 
 @app.route("/users/new")
 def show_add_form():
@@ -109,3 +109,9 @@ def delete_post(post_id):
     Post.query.filter_by(id=post_id).delete()
     db.session.commit()
     return redirect(f"/users/{user_id}")
+
+@app.route("/tags")
+def show_all_tags():
+    tags = Tag.query.order_by(Tag.name).all()
+    
+    return render_template("tags.html", tags=tags)
