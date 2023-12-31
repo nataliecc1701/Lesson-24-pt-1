@@ -75,9 +75,20 @@ def show_post_form(user_id):
 def add_post(user_id):
     title = request.form["title"]
     content = request.form["content"]
-    
+       
     new_post = Post(creator_id = user_id, title=title, content=content)
     db.session.add(new_post)
+    db.session.commit()
+    
+    new_post_tags = []
+    for key in request.form:
+        print(key, flush=True)
+        print(key[0:3], flush=True)
+        if key[0:3] == "tag" and request.form[key] == "on":
+            print(f"TAG DETECTED: {key[3:]}", flush=True)
+            new_post_tags.append(PostTag(post_id = new_post.id, tag_id = key[3:]))
+            
+    db.session.add_all(new_post_tags)
     db.session.commit()
     
     return redirect(f"/posts/{new_post.id}")
